@@ -21,16 +21,17 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('settings/', include('django_mfa.urls')),
-    path('', index, name='index'),
-    path('register/', register, name='register'),
-    path('home/', home, name='home'),
-    path('logout/', log_out, name='log_out'),
+    path("admin/", admin.site.urls),
+    path("settings/", include("django_mfa_rest.urls")),
+    path("", index, name="index"),
+    path("register/", register, name="register"),
+    path("home/", home, name="home"),
+    path("logout/", log_out, name="log_out"),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r"^__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns

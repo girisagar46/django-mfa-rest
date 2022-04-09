@@ -3,8 +3,8 @@ from __future__ import print_function, unicode_literals, division, absolute_impo
 import datetime
 import time
 
-from django_mfa import utils
-from django_mfa.otp import OTP
+from django_mfa_rest import utils
+from django_mfa_rest.otp import OTP
 
 
 class TOTP(OTP):
@@ -13,7 +13,7 @@ class TOTP(OTP):
         @option options [Integer] interval (30) the time interval in seconds
             for OTP This defaults to 30 which is standard.
         """
-        self.interval = kwargs.pop('interval', 30)
+        self.interval = kwargs.pop("interval", 30)
         super(TOTP, self).__init__(*args, **kwargs)
 
     def at(self, for_time, counter_offset=0):

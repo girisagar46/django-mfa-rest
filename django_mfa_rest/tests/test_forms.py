@@ -1,22 +1,26 @@
-from django_mfa.models import *
+from django_mfa_rest.models import *
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from django_mfa.forms import *
+from django_mfa_rest.forms import *
 from unittest import skip
 
 
 class TestU2fForm(TestCase):
-
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username='micro', email='djangomfa@mp.com', password='djangomfa')
+            username="micro", email="djangomfa@mp.com", password="djangomfa"
+        )
 
     def test_key_response_form(self):
         self.assertTrue(issubclass(KeyResponseForm, forms.Form))
         form_data = {"response": "xyz"}
-        form = KeyRegistrationForm(data=form_data, user=self.user,
-                                   request="/settings/add-key/", appId="https://appId")
+        form = KeyRegistrationForm(
+            data=form_data,
+            user=self.user,
+            request="/settings/add-key/",
+            appId="https://appId",
+        )
         self.assertTrue(form.is_valid())
 
     # @skip('Need to implement ')

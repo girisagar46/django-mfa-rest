@@ -63,3 +63,4 @@ media/
 *~
 *.swp
 *.swo
+venv/
